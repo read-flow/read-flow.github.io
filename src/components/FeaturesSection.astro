@@ -1,0 +1,9 @@
+---
+import { FEATURES } from '../lib/features';
+import FeatureRow from './FeatureRow.astro';
+---
+<section id="features">
+  {FEATURES.map((feature, index) => (
+    <FeatureRow feature={feature} reversed={index % 2 === 1} />
+  ))}
+</section>

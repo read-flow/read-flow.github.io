@@ -1,0 +1,43 @@
+---
+import type { Feature } from '../lib/features';
+import { screenshotUrl } from '../lib/features';
+
+interface Props {
+  feature: Feature;
+  reversed?: boolean;
+}
+
+const { feature, reversed = false } = Astro.props;
+---
+<div class:list={['feature-row', { reversed }]}>
+  <div class="feature-copy">
+    <h3>{feature.title}</h3>
+    <p>{feature.description}</p>
+  </div>
+  <div class="feature-visual">
+    <img src={screenshotUrl(feature.screenshot)} alt={feature.title} loading="lazy" />
+  </div>
+</div>
+
+<style>
+  .feature-row {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+  .feature-row.reversed {
+    flex-direction: row-reverse;
+  }
+  .feature-copy,
+  .feature-visual {
+    flex: 1;
+  }
+  .feature-visual img {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    display: block;
+  }
+</style>
