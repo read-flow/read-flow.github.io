@@ -1,0 +1,24 @@
+---
+title: Headless server + PWA
+description: Run Read Flow without a GUI and connect to it from the web app.
+sidebar:
+  order: 3
+---
+
+For a home server or NAS, run Read Flow with no window at all — it serves the REST API and the
+PWA itself from one process.
+
+```bash
+read-flow --headless --address 0.0.0.0 --port 8000
+```
+
+- `--address` — bind address; `0.0.0.0` listens on every network interface.
+- `--port` — bind port; `0` picks a free port automatically.
+- `--configuration-file <path>` — use a config file other than the default location.
+
+Then, from any device on your network, open `http://<server-address>:8000` in a browser. The page
+served **is** the PWA — install it to your home screen or desktop like any other installable web
+app, and it will keep talking to that server over the network.
+
+Packaged release builds already embed the web app, so `read-flow --headless` serves it directly —
+no separate build or deploy step needed.

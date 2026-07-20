@@ -1,0 +1,33 @@
+---
+title: OPDS catalogs
+description: Search and pull public-domain titles from Project Gutenberg and Standard Ebooks.
+sidebar:
+  order: 2
+---
+
+Read Flow can search external OPDS catalogs and pull titles directly into your library, without
+leaving the app.
+
+## Built-in catalogs
+
+Two catalogs are enabled by default:
+
+```toml
+[[online_library.catalogs]]
+type = "builtin"
+id = "project_gutenberg"
+enabled = true
+
+[[online_library.catalogs]]
+type = "builtin"
+id = "standard_ebooks"
+enabled = true
+```
+
+Toggle either one off from **Preferences → Online libraries**, or by setting `enabled = false`
+directly in `read-flow.toml`.
+
+## Searching
+
+Open the **Online library** search from the web app's search bar — results show cover, title, and
+author, with a one-click **Add to library** action that downloads and scans the file in.

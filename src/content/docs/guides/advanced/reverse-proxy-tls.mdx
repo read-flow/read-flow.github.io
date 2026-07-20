@@ -1,0 +1,43 @@
+---
+title: Reverse proxy & TLS
+description: Serve Read Flow over HTTPS, either natively or behind a reverse proxy.
+sidebar:
+  order: 4
+---
+
+By default the headless server speaks plain HTTP. If you're exposing it beyond your local
+network, put it behind TLS using one of these two approaches.
+
+## Native TLS
+
+Read Flow can terminate TLS itself — set a certificate and key in `read-flow.toml`:
+
+```toml
+[server.tls]
+cert = "/path/to/cert.pem"
+key = "/path/to/key.pem"
+```
+
+Or from **Preferences → Server**, enable **TLS** and click **Generate** to create a self-signed
+certificate automatically.
+
+Self-signed certificates work fine for the desktop app connecting to itself, but browsers (and
+the PWA) won't trust them without manually importing the certificate — for a source you'll open
+in a normal browser, use a certificate from a real CA instead (see below), or import the
+self-signed cert into your device's trust store.
+
+## Reverse proxy (recommended for browser access)
+
+Point a reverse proxy that already handles trusted certificates — such as
+[Caddy](https://caddyserver.com/) or [nginx](https://nginx.org/) with
+[Let's Encrypt](https://letsencrypt.org/) — at Read Flow's plain-HTTP port. A minimal Caddy
+example:
+
+```
+read-flow.example.com {
+    reverse_proxy localhost:8000
+}
+```
+
+Caddy obtains and renews the certificate automatically; Read Flow itself keeps running with TLS
+disabled, listening only on `localhost`.
