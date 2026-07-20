@@ -1,0 +1,44 @@
+<section class="three-ways">
+  <h2>Three ways in, one library</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Desktop app</h3>
+      <p>A native app for Linux and macOS. Browse, read, tag, and manage scan folders from a GUI.</p>
+    </div>
+    <div class="card">
+      <h3>Headless server</h3>
+      <p>
+        Run the same app without a UI on a home server or NAS, so the web app can connect over
+        your network.
+      </p>
+    </div>
+    <div class="card">
+      <h3>Web app (PWA)</h3>
+      <p>
+        A browser-based reader with fuzzy search and offline-capable reading, installable to any
+        device. Can aggregate multiple Read Flow servers as sources.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .three-ways {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    text-align: center;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    text-align: left;
+  }
+  .card {
+    background: var(--color-bg-2);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+  }
+</style>
