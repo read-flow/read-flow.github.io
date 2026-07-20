@@ -1,0 +1,52 @@
+---
+title: Install
+description: Install Read Flow on Linux or macOS, or build it from source.
+sidebar:
+  order: 1
+---
+
+## Linux (x86_64)
+
+- **`.deb`** (Debian/Ubuntu):
+
+  ```bash
+  sudo apt install ./read-flow_*.deb
+  ```
+
+- **Portable tarball**: extract `read-flow-*-linux-x86_64.tar.gz` and run the `read-flow` binary
+  inside. Optionally copy the `.desktop` and `.svg` files into `~/.local/share/`.
+
+## macOS (Apple Silicon)
+
+Download `read-flow-*-macos-arm64.zip`, unzip it, and move **Read Flow.app** to `/Applications`.
+
+The app is not code-signed yet, so macOS Gatekeeper blocks it on first launch. To open it:
+right-click **Read Flow.app** → **Open** → **Open**. Alternatively, from a terminal:
+
+```bash
+xattr -dr com.apple.quarantine "/Applications/Read Flow.app"
+```
+
+## Verify your download
+
+Every release publishes a `SHA256SUMS` file alongside the binaries:
+
+```bash
+shasum -a 256 -c SHA256SUMS
+```
+
+## Build from source
+
+Requires the [Rust toolchain](https://rustup.rs/) and, for the web app,
+[Node.js](https://nodejs.org/) ≥ 20.
+
+```bash
+cargo run -p read-flow --release
+```
+
+See the [repository README](https://github.com/read-flow/read-flow#build-from-source) for the
+full prerequisite list, including the Linux system libraries the desktop app needs.
+
+## Next step
+
+Once installed, continue to [Setup &amp; configuration](/guides/setup/).
