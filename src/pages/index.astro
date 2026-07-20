@@ -1,12 +1,10 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Read Flow</title>
-  </head>
-  <body>
-    <p>Coming soon.</p>
-  </body>
-</html>
+<BaseLayout title="Read Flow" description="Organize and read your e-book and PDF library.">
+  <SiteNav />
+  <p>Coming soon.</p>
+  <SiteFooter />
+</BaseLayout>

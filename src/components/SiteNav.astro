@@ -1,0 +1,44 @@
+---
+import { NAV_LINKS } from '../lib/nav-links';
+---
+<header class="site-nav">
+  <a class="brand" href="/">
+    <span>Read Flow</span>
+  </a>
+  <nav>
+    <ul>
+      {NAV_LINKS.map((link) => (
+        <li><a href={link.href}>{link.label}</a></li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background: var(--color-bg-2);
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 700;
+  }
+  nav ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  nav a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+</style>

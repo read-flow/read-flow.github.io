@@ -1,0 +1,30 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <ul>
+    <li><a href="https://github.com/read-flow/read-flow">GitHub</a></li>
+    <li><a href="https://github.com/read-flow/read-flow/releases">Releases</a></li>
+    <li><a href="https://github.com/read-flow/read-flow/blob/main/NOTICE">License</a></li>
+    <li><a href="/guides/">Guides</a></li>
+  </ul>
+  <p>&copy; {year} Read Flow. Source available on GitHub.</p>
+</footer>
+
+<style>
+  .site-footer {
+    padding: 2rem 1.5rem;
+    background: var(--color-bg-2);
+    color: var(--color-text-muted);
+  }
+  .site-footer ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
+  }
+  .site-footer a {
+    color: var(--color-text-muted);
+  }
+</style>
