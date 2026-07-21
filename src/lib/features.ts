@@ -35,10 +35,15 @@ export const FEATURES: Feature[] = [
     screenshot: 'dark-dashboard.png',
   },
   {
-    slug: 'readers',
-    title: 'Built-in PDF & EPUB readers',
-    description:
-      'A native PDF viewer and EPUB reader render your books directly in the app — no external tools needed.',
+    slug: 'pdf-reader',
+    title: 'Built-in PDF reader',
+    description: 'A native PDF viewer renders your documents directly in the app — no external tools needed.',
+    screenshot: 'dark-pdf-reader.png',
+  },
+  {
+    slug: 'epub-reader',
+    title: 'Built-in EPUB reader',
+    description: 'A native EPUB reader renders your e-books directly in the app — no external tools needed.',
     screenshot: 'dark-epub-reader.png',
   },
   {
@@ -47,18 +52,6 @@ export const FEATURES: Feature[] = [
     description:
       'Search and pull public-domain titles straight from catalogs like Project Gutenberg and Standard Ebooks.',
     screenshot: 'dark-opds-search.png',
-  },
-  {
-    slug: 'search',
-    title: 'Fuzzy search',
-    description: 'Find what you want in the web app even with typos or partial titles.',
-    screenshot: 'dark-opds-search.png',
-  },
-  {
-    slug: 'private-mode',
-    title: 'Private mode',
-    description: 'Hide sensitive documents behind a private-tag filter, on-device.',
-    screenshot: 'dark-dashboard.png',
   },
 ];
 
