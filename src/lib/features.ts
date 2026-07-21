@@ -28,6 +28,13 @@ export const FEATURES: Feature[] = [
     screenshot: 'dark-dashboard.png',
   },
   {
+    slug: 'multi-instance',
+    title: 'Connect multiple instances',
+    description:
+      'Aggregate libraries from more than one Read Flow server into a single view, from the PWA or the Cosmic desktop app, with reading progress synced across all of them.',
+    screenshot: 'dark-dashboard.png',
+  },
+  {
     slug: 'readers',
     title: 'Built-in PDF & EPUB readers',
     description:

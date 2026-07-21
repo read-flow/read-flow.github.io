@@ -1,17 +1,20 @@
 ---
 title: Multi-instance & remote sources
-description: Connect the PWA to more than one Read Flow server.
+description: Connect the PWA or the Cosmic desktop app to more than one Read Flow server.
 sidebar:
   order: 1
 ---
 
-The web app (PWA) can aggregate multiple Read Flow servers into one combined library view — handy
-if you run a server at home and another elsewhere, or want to browse a family member's library
-alongside your own.
+Both the web app (PWA) and the Cosmic desktop app can aggregate multiple Read Flow servers into
+one combined library view — handy if you run a server at home and another elsewhere, want to
+browse a family member's library alongside your own, or keep reading progress in sync across
+every device you read on.
 
 ## Adding a source
 
-In the PWA: **Settings → Sources → Add source**, and fill in:
+### In the PWA
+
+**Settings → Sources → Add source**, and fill in:
 
 - **Name** — a label for this source, shown in the source list.
 - **Base URL** — the server's address, e.g. `http://192.168.1.10:8000`.
@@ -21,6 +24,17 @@ In the PWA: **Settings → Sources → Add source**, and fill in:
   role for that user on the remote server.
 
 The PWA test-connects before saving, so a wrong URL or credential is caught immediately.
+
+### In the Cosmic desktop app
+
+**Preferences → Document Sources → Add Source**, and fill in:
+
+- **Remote URL** — the server's address, e.g. `http://192.168.1.10:8000`.
+- **User ID** — a username configured on that server (see below).
+- **Authorization token** — that user's password.
+
+Cosmic checks reachability as you type and will let you add a source that's currently
+unreachable — it appears as unreachable until the server comes back online.
 
 ## How authentication works
 
@@ -33,6 +47,6 @@ roles = ["owner"]
 ```
 
 The **User ID** you enter when adding a source is the table key (`alice` above), and the
-**Passphrase** is the plaintext password the app hashed when that user was created. A source only
-needs the `owner` role if you also enable **Private mode** for it — read-only aggregation works
-with any configured role.
+**Passphrase** (called **Authorization token** in Cosmic) is the plaintext password the app hashed
+when that user was created. A source only needs the `owner` role if you also enable **Private
+mode** for it in the PWA — read-only aggregation works with any configured role.
