@@ -11,6 +11,7 @@ export default defineConfig({
         github: 'https://github.com/read-flow/read-flow',
       },
       sidebar: [{ label: 'Guides', autogenerate: { directory: 'guides' } }],
+      customCss: ['./src/styles/starlight-theme.css'],
     }),
   ],
 });

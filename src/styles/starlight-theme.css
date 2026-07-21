@@ -1,0 +1,62 @@
+/**
+ * Starlight theme override — enforces the brand palette (see src/styles/tokens.css)
+ * on the /guides/ section, and makes the result dark-mode-only in effect: every
+ * value is set identically under `:root` and `:root[data-theme='light']`, so
+ * toggling Starlight's built-in light/dark switch produces no visible change.
+ *
+ * See docs/superpowers/specs/2026-07-20-marketing-site-design.md
+ * ("Visual identity", "Out of scope (v1)" -> "Light mode").
+ */
+@import './tokens.css';
+
+:root,
+:root[data-theme='light'] {
+  /* Base surfaces */
+  --sl-color-white: var(--color-text);
+  --sl-color-black: var(--color-bg);
+
+  --sl-color-gray-1: var(--color-text);
+  --sl-color-gray-2: var(--color-text);
+  --sl-color-gray-3: var(--color-text-muted);
+  --sl-color-gray-4: var(--color-text-muted);
+  --sl-color-gray-5: #2a1f5c;
+  --sl-color-gray-6: var(--color-bg-2);
+  --sl-color-gray-7: var(--color-bg-2);
+
+  /* Accent (brand primary / secondary) */
+  --sl-color-accent-low: #241a52;
+  --sl-color-accent: var(--color-primary);
+  --sl-color-accent-high: #c9bdf7;
+
+  /* Aside/semantic colors, kept in-family with the brand palette */
+  --sl-color-orange-low: #4a2a12;
+  --sl-color-orange: var(--color-cta-mid);
+  --sl-color-orange-high: #fddcb2;
+  --sl-color-green-low: #123a2c;
+  --sl-color-green: #4ade80;
+  --sl-color-green-high: #b9f5d0;
+  --sl-color-blue-low: #123a52;
+  --sl-color-blue: var(--color-book);
+  --sl-color-blue-high: #bbe8fb;
+  --sl-color-purple-low: #241a52;
+  --sl-color-purple: var(--color-primary);
+  --sl-color-purple-high: #d9d0fb;
+  --sl-color-red-low: #4a1230;
+  --sl-color-red: var(--color-cta-start);
+  --sl-color-red-high: #fbcfe8;
+
+  /* Semantic text/background */
+  --sl-color-text: var(--color-text);
+  --sl-color-text-accent: var(--color-book);
+  --sl-color-text-invert: var(--color-text);
+  --sl-color-bg: var(--color-bg);
+  --sl-color-bg-nav: var(--color-bg-2);
+  --sl-color-bg-sidebar: var(--color-bg-2);
+  --sl-color-bg-inline-code: #241a52;
+  --sl-color-bg-accent: var(--color-primary);
+  --sl-color-hairline-light: #2a1f5c;
+  --sl-color-hairline: #241a52;
+  --sl-color-hairline-shade: var(--color-bg);
+
+  --sl-color-backdrop-overlay: hsla(258, 63%, 6%, 0.66);
+}
