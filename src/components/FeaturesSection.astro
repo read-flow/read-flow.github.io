@@ -1,6 +1,8 @@
 ---
-import { FEATURES } from '../lib/features';
+import { FEATURES, validateFeatures } from '../lib/features';
 import FeatureRow from './FeatureRow.astro';
+
+validateFeatures(FEATURES);
 ---
 <section id="features">
   {FEATURES.map((feature, index) => (
