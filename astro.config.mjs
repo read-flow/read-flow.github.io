@@ -7,6 +7,7 @@ export default defineConfig({
     starlight({
       title: 'Read Flow Guides',
       description: 'Install, setup, and advanced guides for Read Flow.',
+      favicon: '/favicon-32.png',
       social: {
         github: 'https://github.com/read-flow/read-flow',
       },
