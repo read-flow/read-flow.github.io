@@ -2,3 +2,4 @@
 node_modules/
 dist/
 .astro/
+assets/sample-library/database.db*

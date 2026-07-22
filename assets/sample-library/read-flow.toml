@@ -1,0 +1,30 @@
+# Read Flow config for scanning this sample library.
+#
+# Usage (run from inside assets/sample-library/, so the relative paths below
+# resolve to this directory):
+#
+#   read-flow-cli --configuration-file read-flow.toml scan .
+#   read-flow-cli --configuration-file read-flow.toml apply-tags
+#
+# The first command imports the EPUB/PDF files into database.db. The second
+# is a separate step that reads [scan.auto_tags] below and tags the
+# already-imported files — it does not run automatically as part of scan.
+
+[database]
+url = "database.db"
+
+[scan]
+extensions = ["pdf", "epub"]
+
+[scan.directories."."]
+action = "Scan"
+tags = []
+inherit = true
+
+[scan.auto_tags]
+"%twenty-thousand-leagues%" = ["Science Fiction", "Adventure"]
+"%pride-and-prejudice%" = ["Classic", "Romance"]
+"%jekyll-and-hyde%" = ["Gothic", "Mystery"]
+"%meditations%" = ["Philosophy"]
+"%leaves-of-grass%" = ["Poetry"]
+"%the-time-machine%" = ["Science Fiction"]
