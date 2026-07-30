@@ -1,36 +1,110 @@
 ---
-title: Reverse proxy & TLS
-description: Serve Read Flow over HTTPS, either natively or behind a reverse proxy.
+title: HTTPS & TLS
+description: Serve Read Flow over HTTPS, either with its own local CA or behind a reverse proxy.
 sidebar:
   order: 4
 ---
 
-By default the headless server speaks plain HTTP. If you're exposing it beyond your local
-network, put it behind TLS using one of these two approaches.
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-## Native TLS
+By default the headless server speaks plain HTTP. If you're opening it to your browser or the
+PWA — not just the desktop app talking to itself — put it behind HTTPS using one of these two
+approaches.
 
-Read Flow can terminate TLS itself — set a certificate and key in `read-flow.toml`:
+## Native TLS with a local CA
 
-```toml
-[server.tls]
-cert = "/path/to/cert.pem"
-key = "/path/to/key.pem"
-```
+Read Flow can terminate TLS itself, with no public domain or reverse proxy required. From
+**Preferences → Server → HTTPS**, enable **TLS** and click **Generate**. This creates:
 
-Or from **Preferences → Server**, enable **TLS** and click **Generate** to create a self-signed
-certificate automatically.
+- A local root certificate authority (CA), the first time you generate a certificate.
+- A certificate for the server itself, signed by that CA.
 
-Self-signed certificates work fine for the desktop app connecting to itself, but browsers (and
-the PWA) won't trust them without manually importing the certificate — for a source you'll open
-in a normal browser, use a certificate from a real CA instead (see below), or import the
-self-signed cert into your device's trust store.
+Trust the CA's root certificate once on each device you connect from, and every certificate Read
+Flow issues afterwards — including a new one generated later, e.g. after you change the server's
+bind address — is trusted automatically, with no further per-device action or browser warnings.
 
-## Reverse proxy (recommended for browser access)
+The desktop app that generated the certificate already trusts it — click **Local CA certificate →
+Open** in the same **Preferences → Server → HTTPS** section, which opens the root certificate with
+your OS's own certificate-import tool.
 
-Point a reverse proxy that already handles trusted certificates — such as
+### Getting the CA root onto other devices
+
+The root certificate is a small file (`read-flow-ca-cert.pem`) with nothing sensitive in it — only
+the private key, which Read Flow never shares, matters for security. Get it onto another device
+either way:
+
+- **Copy the file directly** — AirDrop, a USB stick, email, a synced folder — from wherever
+  **Local CA certificate → Open** revealed it. This is the simplest option and never touches the
+  network.
+- **Download it from the server** — visit `https://<server-address>:<port>/ca.pem` from the other
+  device. Since that device doesn't trust the certificate yet, the browser will show a security
+  warning first; choose to proceed anyway (e.g. **Advanced → Continue**) just this once to download
+  the file, then follow the steps below to trust it. After that one time, the warning is gone for
+  good.
+
+### Trusting the CA root, per platform
+
+<Tabs>
+  <TabItem label="macOS">
+    Double-click `read-flow-ca-cert.pem` — it opens in **Keychain Access** and is added to your
+    login keychain. Find **Read Flow Local CA** in the list, double-click it, expand **Trust**, set
+    **When using this certificate** to **Always Trust**, then close the panel and enter your
+    password to confirm.
+  </TabItem>
+  <TabItem label="Windows">
+    Double-click the file (rename it to `.crt` first if Windows doesn't recognize `.pem`) to open
+    the certificate import wizard. Choose **Local Machine** (requires an admin prompt) or **Current
+    User**, select **Place all certificates in the following store**, pick **Trusted Root
+    Certification Authorities**, then finish.
+  </TabItem>
+  <TabItem label="Linux">
+    System-wide trust (used by most browsers and tools):
+
+    ```bash
+    # Debian/Ubuntu
+    sudo cp read-flow-ca-cert.pem /usr/local/share/ca-certificates/read-flow-ca.crt
+    sudo update-ca-certificates
+
+    # Fedora/RHEL
+    sudo cp read-flow-ca-cert.pem /etc/pki/ca-trust/source/anchors/
+    sudo update-ca-trust
+    ```
+
+    Firefox keeps its own certificate store separate from the system: **Settings → Privacy &
+    Security → Certificates → View Certificates → Authorities → Import**, and check "Trust this CA
+    to identify websites."
+  </TabItem>
+  <TabItem label="Android">
+    **Settings → Security → More security settings → Encryption & credentials → Install a
+    certificate → CA certificate**, then select the downloaded file. Recent Android versions treat
+    user-installed CAs as untrusted by individual apps unless that app explicitly opts in — this
+    covers the system browser and the installed PWA, but not necessarily every third-party app.
+  </TabItem>
+  <TabItem label="iOS / iPadOS">
+    Downloading the file offers to install it as a configuration profile — accept, then go to
+    **Settings → General → VPN & Device Management**, tap the profile, and **Install**. That alone
+    isn't enough: iOS installs the profile but doesn't trust it for HTTPS until you separately
+    enable full trust under **Settings → General → About → Certificate Trust Settings**.
+  </TabItem>
+  <TabItem label="FreeBSD / other BSD">
+    Copy the file into your system's trust anchor directory and rehash, e.g. on FreeBSD:
+
+    ```bash
+    sudo cp read-flow-ca-cert.pem /usr/local/share/certs/read-flow-ca.pem
+    sudo certctl rehash
+    ```
+
+    As on Linux, Firefox uses its own certificate store — import it separately under **Settings →
+    Privacy & Security → Certificates**.
+  </TabItem>
+</Tabs>
+
+## Reverse proxy
+
+If you already have a public domain pointed at the server (port-forwarded, or reachable via a
+tunnel like Tailscale), a reverse proxy that obtains a certificate from a real CA — such as
 [Caddy](https://caddyserver.com/) or [nginx](https://nginx.org/) with
-[Let's Encrypt](https://letsencrypt.org/) — at Read Flow's plain-HTTP port. A minimal Caddy
+[Let's Encrypt](https://letsencrypt.org/) — needs no per-device trust step at all. A minimal Caddy
 example:
 
 ```
