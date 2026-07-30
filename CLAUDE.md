@@ -15,8 +15,10 @@ npm test          # vitest unit tests
 - `src/pages/index.astro` — landing page.
 - `src/content/docs/guides/` — Starlight guide content (MDX). File path under `guides/` maps
   directly to its route, e.g. `guides/advanced/multi-instance.mdx` → `/guides/advanced/multi-instance/`.
-  Sidebar order is set per-file via frontmatter `sidebar: { order: N }`; no config changes needed
-  to add a new guide.
+  Top-level order (Guides intro, Install, Setup, then the "Advanced" group) is fixed manually in
+  `astro.config.mjs`'s `sidebar` items. Within `guides/advanced/`, order is set per-file via
+  frontmatter `sidebar: { order: N }` — new advanced guides need no config changes, but a new
+  top-level guide does.
 - `src/lib/` — pure data/logic modules (nav links, feature list), each with a co-located
   `*.test.ts` run by `npm test`.
 - `src/components/` — Astro presentational components.

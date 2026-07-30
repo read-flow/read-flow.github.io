@@ -11,7 +11,17 @@ export default defineConfig({
       social: {
         github: 'https://github.com/read-flow/read-flow',
       },
-      sidebar: [{ label: 'Guides', autogenerate: { directory: 'guides' } }],
+      sidebar: [
+        {
+          label: 'Guides',
+          items: [
+            { label: 'Guides', link: '/guides/' },
+            { label: 'Install', link: '/guides/install/' },
+            { label: 'Setup & configuration', link: '/guides/setup/' },
+            { label: 'Advanced', autogenerate: { directory: 'guides/advanced' } },
+          ],
+        },
+      ],
       customCss: ['./src/styles/starlight-theme.css'],
     }),
   ],
