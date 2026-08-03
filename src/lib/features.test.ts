@@ -26,9 +26,15 @@ describe('validateFeatures', () => {
 });
 
 describe('screenshotUrl', () => {
-  it('builds a raw githubusercontent URL against the screenshots branch', () => {
-    expect(screenshotUrl('dark-dashboard.png')).toBe(
-      'https://raw.githubusercontent.com/read-flow/read-flow/screenshots/dark-dashboard.png',
+  it('resolves a filename to a local asset URL', () => {
+    const url = screenshotUrl('cosmic-opds.png');
+    expect(url).not.toContain('raw.githubusercontent.com');
+    expect(url).toMatch(/cosmic-opds.*\.png$/);
+  });
+
+  it('throws for a filename not present in src/assets/screenshots/', () => {
+    expect(() => screenshotUrl('does-not-exist.png')).toThrow(
+      'Screenshot not found in src/assets/screenshots/: does-not-exist.png',
     );
   });
 });

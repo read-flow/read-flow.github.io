@@ -26,9 +26,13 @@ npm test          # vitest unit tests
 
 ## Conventions
 
-- Screenshots are hotlinked from `read-flow/read-flow`'s `screenshots` git branch
-  (`https://raw.githubusercontent.com/read-flow/read-flow/screenshots/<file>.png`) — never
-  duplicated into this repo, so they stay in sync with the app repo automatically.
+- Screenshots live locally in `src/assets/screenshots/` and are generated, not hand-captured.
+  Run the `screenshot_tool` binary in the `read-flow/read-flow` repo (behind the
+  `screenshot-tool` Cargo feature) against this repo's `assets/sample-library/`:
+  `cargo run -p read-flow --features screenshot-tool -- --sample-library <path to
+  assets/sample-library> --out <path to src/assets/screenshots>`. It renders each app page
+  headlessly (no display server, no live network) and writes PNGs straight to `--out`.
+  Regenerate and re-commit them whenever the relevant app UI changes.
 - Guide content (`src/content/docs/guides/`) should stay in sync with `read-flow/read-flow`'s
   `README.md` and `read-flow.toml`/`core/src/settings.rs` — when that repo's config keys or
   install steps change, update the corresponding guide here in the same PR if possible.

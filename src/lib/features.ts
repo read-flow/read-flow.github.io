@@ -11,47 +11,47 @@ export const FEATURES: Feature[] = [
     title: 'Automatic scanning & de-duplication',
     description:
       'Read Flow scans your document folders and fingerprints every file with SHA-256, so duplicates are caught even if they were renamed or copied.',
-    screenshot: 'dark-document-list.png',
+    screenshot: 'cosmic-scanning.png',
   },
   {
     slug: 'tags',
     title: 'Tags & auto-tagging',
     description:
       'Organize your library with tags, and define rules that tag documents automatically as they are discovered.',
-    screenshot: 'dark-document-list.png',
+    screenshot: 'cosmic-tags.png',
   },
   {
     slug: 'progress',
     title: 'Reading status & progress',
     description:
       'Mark documents Unread, Reading, or Read, and pick up exactly where you left off — kept in sync across your devices.',
-    screenshot: 'dark-dashboard.png',
+    screenshot: 'cosmic-progress.png',
   },
   {
     slug: 'multi-instance',
     title: 'Connect multiple instances',
     description:
       'Aggregate libraries from more than one Read Flow server into a single view, from the PWA or the Cosmic desktop app, with reading progress synced across all of them.',
-    screenshot: 'dark-dashboard.png',
+    screenshot: 'cosmic-multi-instance.png',
   },
   {
     slug: 'pdf-reader',
     title: 'Built-in PDF reader',
     description: 'A native PDF viewer renders your documents directly in the app — no external tools needed.',
-    screenshot: 'dark-pdf-reader.png',
+    screenshot: 'cosmic-pdf-reader.png',
   },
   {
     slug: 'epub-reader',
     title: 'Built-in EPUB reader',
     description: 'A native EPUB reader renders your e-books directly in the app — no external tools needed.',
-    screenshot: 'dark-epub-reader.png',
+    screenshot: 'cosmic-epub-reader.png',
   },
   {
     slug: 'opds',
     title: 'Online libraries (OPDS)',
     description:
       'Search and pull public-domain titles straight from catalogs like Project Gutenberg and Standard Ebooks.',
-    screenshot: 'dark-opds-search.png',
+    screenshot: 'cosmic-opds.png',
   },
 ];
 
@@ -74,6 +74,15 @@ export function validateFeatures(features: Feature[]): void {
   }
 }
 
+const screenshotModules = import.meta.glob<{ default: string | { src: string } }>(
+  '../assets/screenshots/*.png',
+  { eager: true },
+);
+
 export function screenshotUrl(filename: string): string {
-  return `https://raw.githubusercontent.com/read-flow/read-flow/screenshots/${filename}`;
+  const mod = screenshotModules[`../assets/screenshots/${filename}`];
+  if (!mod) {
+    throw new Error(`Screenshot not found in src/assets/screenshots/: ${filename}`);
+  }
+  return typeof mod.default === 'string' ? mod.default : mod.default.src;
 }
