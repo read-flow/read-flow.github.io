@@ -19,31 +19,33 @@
   --sl-color-gray-2: var(--color-text);
   --sl-color-gray-3: var(--color-text-muted);
   --sl-color-gray-4: var(--color-text-muted);
-  --sl-color-gray-5: #2a1f5c;
+  --sl-color-gray-5: #1f215c;
   --sl-color-gray-6: var(--color-bg-2);
   --sl-color-gray-7: var(--color-bg-2);
 
-  /* Accent (brand primary / secondary) */
-  --sl-color-accent-low: #241a52;
+  /* Accent (brand primary / secondary) — low/high are --color-purple
+     shifted in lightness only (same hue), not blended toward the blue bg. */
+  --sl-color-accent-low: #2a0948;
   --sl-color-accent: var(--color-primary);
-  --sl-color-accent-high: #c9bdf7;
+  --sl-color-accent-high: #d2b2f0;
 
-  /* Aside/semantic colors, kept in-family with the brand palette */
-  --sl-color-orange-low: #4a2a12;
+  /* Aside/semantic colors: each -low/-high pair is its base hue lightened
+     or darkened, matching the derivation in assets/brand/color-palette.md. */
+  --sl-color-orange-low: #47240b;
   --sl-color-orange: var(--color-cta-mid);
-  --sl-color-orange-high: #fddcb2;
-  --sl-color-green-low: #123a2c;
-  --sl-color-green: #4ade80;
-  --sl-color-green-high: #b9f5d0;
-  --sl-color-blue-low: #123a52;
+  --sl-color-orange-high: #efccb4;
+  --sl-color-green-low: #123f2f;
+  --sl-color-green: var(--color-green);
+  --sl-color-green-high: #bbe7d7;
+  --sl-color-blue-low: #083549;
   --sl-color-blue: var(--color-book);
-  --sl-color-blue-high: #bbe8fb;
-  --sl-color-purple-low: #241a52;
+  --sl-color-blue-high: #b1ddf1;
+  --sl-color-purple-low: #2a0948;
   --sl-color-purple: var(--color-primary);
-  --sl-color-purple-high: #d9d0fb;
-  --sl-color-red-low: #4a1230;
+  --sl-color-purple-high: #d2b2f0;
+  --sl-color-red-low: #4a080d;
   --sl-color-red: var(--color-cta-start);
-  --sl-color-red-high: #fbcfe8;
+  --sl-color-red-high: #f2b0b6;
 
   /* Semantic text/background */
   --sl-color-text: var(--color-text);
@@ -52,11 +54,11 @@
   --sl-color-bg: var(--color-bg);
   --sl-color-bg-nav: var(--color-bg-2);
   --sl-color-bg-sidebar: var(--color-bg-2);
-  --sl-color-bg-inline-code: #241a52;
+  --sl-color-bg-inline-code: #1a1c51;
   --sl-color-bg-accent: var(--color-primary);
-  --sl-color-hairline-light: #2a1f5c;
-  --sl-color-hairline: #241a52;
+  --sl-color-hairline-light: #1f215c;
+  --sl-color-hairline: #1a1c51;
   --sl-color-hairline-shade: var(--color-bg);
 
-  --sl-color-backdrop-overlay: hsla(258, 63%, 6%, 0.66);
+  --sl-color-backdrop-overlay: hsla(238, 63%, 6%, 0.66);
 }

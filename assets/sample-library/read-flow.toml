@@ -28,3 +28,24 @@ inherit = true
 "%meditations%" = ["Philosophy"]
 "%leaves-of-grass%" = ["Poetry"]
 "%the-time-machine%" = ["Science Fiction"]
+
+# App theme, colors from assets/brand/color-palette.md (sampled from
+# assets/brand/logo-source.png) — same palette as src/styles/tokens.css on
+# the marketing site. Dark variant matches the logo directly; light keeps
+# the same accent on a paler, readable tint.
+[ui.theme]
+enabled = true
+density = "Standard"
+roundness = "Round"
+frosted = true
+frosted_strength = "Medium"
+
+[ui.theme.light]
+accent = "#a855f7"
+background = "#eef1fb"
+container_background = "#ffffff"
+
+[ui.theme.dark]
+accent = "#a855f7"
+background = "#0d0f57"
+container_background = "#1b2472"
