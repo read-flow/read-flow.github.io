@@ -29,10 +29,10 @@ inherit = true
 "%leaves-of-grass%" = ["Poetry"]
 "%the-time-machine%" = ["Science Fiction"]
 
-# App theme, colors from assets/brand/color-palette.md (sampled from
-# assets/brand/logo-source.png) — same palette as src/styles/tokens.css on
-# the marketing site. Dark variant matches the logo directly; light keeps
-# the same accent on a paler, readable tint.
+# App theme — see assets/brand/color-palette.md ("App chrome" section) for
+# how these were picked. Deliberately its own dark triad, distinct in hue
+# from src/styles/tokens.css's marketing-site background so screenshots of
+# the app stand out against the docs pages that embed them.
 [ui.theme]
 enabled = true
 density = "Standard"
@@ -46,6 +46,6 @@ background = "#eef1fb"
 container_background = "#ffffff"
 
 [ui.theme.dark]
-accent = "#a855f7"
-background = "#0d0f57"
-container_background = "#1b2472"
+accent = "#80C0FF"
+background = "#081018"
+container_background = "#082038"

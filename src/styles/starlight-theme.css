@@ -19,7 +19,7 @@
   --sl-color-gray-2: var(--color-text);
   --sl-color-gray-3: var(--color-text-muted);
   --sl-color-gray-4: var(--color-text-muted);
-  --sl-color-gray-5: #1f215c;
+  --sl-color-gray-5: #14163d;
   --sl-color-gray-6: var(--color-bg-2);
   --sl-color-gray-7: var(--color-bg-2);
 
@@ -54,11 +54,11 @@
   --sl-color-bg: var(--color-bg);
   --sl-color-bg-nav: var(--color-bg-2);
   --sl-color-bg-sidebar: var(--color-bg-2);
-  --sl-color-bg-inline-code: #1a1c51;
+  --sl-color-bg-inline-code: #101132;
   --sl-color-bg-accent: var(--color-primary);
-  --sl-color-hairline-light: #1f215c;
-  --sl-color-hairline: #1a1c51;
+  --sl-color-hairline-light: #14163d;
+  --sl-color-hairline: #101132;
   --sl-color-hairline-shade: var(--color-bg);
 
-  --sl-color-backdrop-overlay: hsla(238, 63%, 6%, 0.66);
+  --sl-color-backdrop-overlay: hsla(238, 63%, 4%, 0.66);
 }

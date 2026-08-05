@@ -38,4 +38,7 @@ npm test          # vitest unit tests
   install steps change, update the corresponding guide here in the same PR if possible.
 - Every new pure-logic module in `src/lib/` needs a co-located `*.test.ts` (Vitest).
 - Dark-mode-only palette for v1 — see the design tokens in `src/styles/tokens.css` before
-  introducing new colors.
+  introducing new colors. `assets/brand/color-palette.md` is the source of truth for the
+  palette itself (derivation, contrast ratios) and for the rules book covers must follow
+  (accent-colored background, `bg`-colored text, one distinct composition per title) —
+  read it before regenerating covers or touching `tokens.css`.
