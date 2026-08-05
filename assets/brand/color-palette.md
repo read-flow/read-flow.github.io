@@ -153,6 +153,14 @@ Three rules, in order of how much they change the artwork:
    theme to share (as Jekyll/Hyde's seam borrows the fuchsia accent as a
    secondary color without borrowing anyone else's layout).
 
+   **Line art must use thick strokes.** Covers are shown at thumbnail size
+   in the app (library grid, document list) — a hairline wave path, seam,
+   or grass blade that reads fine at full 1600×2400 disappears entirely
+   once downscaled to a thumbnail. Any line-art element (Twenty Thousand
+   Leagues' wave, Jekyll/Hyde's seam, Meditations' rings, Leaves of Grass'
+   blades, The Time Machine's spokes) should be drawn heavy enough to
+   survive that downscale, not just to look right at full size.
+
 Accent assignment is picked for thematic fit first (ocean → `cyan`,
 philosophy → `gold`), round-robin only as a tiebreaker — with eight accents
 against a 6-title sample library there's room to be deliberate rather than
@@ -181,13 +189,3 @@ Mirrors `src/styles/tokens.css` (marketing site only — the app's
   --color-green: #34d399;
 }
 ```
-
-## Not yet applied
-
-- The six sample-library covers in `assets/sample-library/_covers/` (and
-  their embedded copies in the `.epub`/`.pdf` files) use the *previous*
-  `app-bg` (`#080935`, the old shared navy) as their text color per rule 2
-  above. Now that `app-bg` is `#081018`, that text is a shade off the
-  current app background — cosmetic (still >4.5:1 on every accent), but the
-  covers should be regenerated with `#081018` text next time they're
-  touched.
