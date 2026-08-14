@@ -36,7 +36,7 @@ inherit = true
 [ui.theme]
 enabled = true
 density = "Standard"
-roundness = "Round"
+roundness = "SlightlyRound"
 frosted = true
 frosted_strength = "Medium"
 
@@ -48,4 +48,4 @@ container_background = "#ffffff"
 [ui.theme.dark]
 accent = "#80C0FF"
 background = "#081018"
-container_background = "#082038"
+container_background = "#011627"
