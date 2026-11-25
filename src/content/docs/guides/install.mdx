@@ -5,16 +5,38 @@ sidebar:
   order: 1
 ---
 
-## Linux (x86_64)
+## Linux
 
-- **`.deb`** (Debian/Ubuntu):
+Linux builds are available for x86_64 (most desktop and laptop PCs) and arm64 (for example,
+Raspberry Pi 5). Choose the package that matches your CPU.
+
+- **`.deb`** (Debian, Ubuntu, and derivatives):
 
   ```bash
   sudo apt install ./read-flow_*.deb
   ```
 
-- **Portable tarball**: extract `read-flow-*-linux-x86_64.tar.gz` and run the `read-flow` binary
-  inside. Optionally copy the `.desktop` and `.svg` files into `~/.local/share/`.
+- **Portable tarball**: extract `read-flow-*-linux-x86_64.tar.gz` (or `read-flow-*-linux-arm64.tar.gz`)
+  and run the `read-flow` binary inside. Optionally copy the `.desktop` and `.svg` files into
+  `~/.local/share/`.
+
+- **Flatpak**: a single-file bundle for x86_64 (`read-flow-*-x86_64.flatpak`) or aarch64
+  (`read-flow-*-aarch64.flatpak`). Install it for your user and run it:
+
+  ```bash
+  flatpak install --user ./read-flow-*-x86_64.flatpak
+  flatpak run io.github.read-flow
+  ```
+
+  The bundle depends on the Freedesktop 25.08 runtime. If Flatpak asks for it and your system
+  doesn't have it yet, add the Flathub remote first:
+
+  ```bash
+  flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+  ```
+
+  The Flatpak has read-write access to your home folder, so scan directories under your home
+  folder work without extra configuration.
 
 ## macOS (Apple Silicon)
 
@@ -37,11 +59,18 @@ shasum -a 256 -c SHA256SUMS
 
 ## Build from source
 
-Requires the [Rust toolchain](https://rustup.rs/) and, for the web app,
-[Node.js](https://nodejs.org/) ≥ 20.
+Requires the [Rust toolchain](https://rustup.rs/), version 1.100 or newer. For the web app,
+[Node.js](https://nodejs.org/) ≥ 20 is also needed.
 
 ```bash
 cargo run -p read-flow --release
+```
+
+To run a headless server that also serves the web app, use [`just`](https://just.systems/) from
+the repository root. This builds the web app first, then starts the server:
+
+```bash
+just serve --address 0.0.0.0 --port 8000
 ```
 
 See the [repository README](https://github.com/read-flow/read-flow#build-from-source) for the

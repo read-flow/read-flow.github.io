@@ -14,18 +14,31 @@ approaches.
 ## Native TLS with a local CA
 
 Read Flow can terminate TLS itself, with no public domain or reverse proxy required. From
-**Preferences → Server → HTTPS**, enable **TLS** and click **Generate**. This creates:
+**Preferences → Server → Advanced**, open the **HTTPS (TLS)** section, turn on **Enable HTTPS (TLS)**,
+and click **Generate** next to **TLS certificate**. Restart the server to apply the change. This
+creates:
 
 - A local root certificate authority (CA), the first time you generate a certificate.
 - A certificate for the server itself, signed by that CA.
+
+![The Advanced section of the Server settings, with the HTTPS (TLS) controls](../../../../assets/screenshots/cosmic-settings-server-advanced.png)
 
 Trust the CA's root certificate once on each device you connect from, and every certificate Read
 Flow issues afterwards — including a new one generated later, e.g. after you change the server's
 bind address — is trusted automatically, with no further per-device action or browser warnings.
 
 The desktop app that generated the certificate already trusts it — click **Local CA certificate →
-Open** in the same **Preferences → Server → HTTPS** section, which opens the root certificate with
+Open** in the same **HTTPS (TLS)** section, which opens the root certificate with
 your OS's own certificate-import tool.
+
+The certificate and key paths are stored in the `[server.tls]` section. The Generate button fills
+these in for you:
+
+```toml
+[server.tls]
+cert = "/path/to/fullchain.pem"
+key = "/path/to/privkey.pem"
+```
 
 ### Getting the CA root onto other devices
 
