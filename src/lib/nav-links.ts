@@ -4,8 +4,7 @@ export interface NavLink {
 }
 
 export const NAV_LINKS: NavLink[] = [
-  { label: 'Features', href: '#features' },
-  { label: 'Install', href: '/guides/install/' },
+  { label: 'Features', href: '/#features' },
   { label: 'Guides', href: '/guides/' },
   { label: 'GitHub', href: 'https://github.com/read-flow/read-flow' },
 ];

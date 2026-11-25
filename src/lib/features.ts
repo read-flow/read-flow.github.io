@@ -7,32 +7,11 @@ export interface Feature {
 
 export const FEATURES: Feature[] = [
   {
-    slug: 'scanning',
-    title: 'Automatic scanning & de-duplication',
-    description:
-      'Read Flow scans your document folders and fingerprints every file with SHA-256, so duplicates are caught even if they were renamed or copied.',
-    screenshot: 'cosmic-scanning.png',
-  },
-  {
-    slug: 'tags',
-    title: 'Tags & auto-tagging',
-    description:
-      'Organize your library with tags, and define rules that tag documents automatically as they are discovered.',
-    screenshot: 'cosmic-tags.png',
-  },
-  {
     slug: 'progress',
     title: 'Reading status & progress',
     description:
       'Mark documents Unread, Reading, or Read, and pick up exactly where you left off — kept in sync across your devices.',
     screenshot: 'cosmic-progress.png',
-  },
-  {
-    slug: 'multi-instance',
-    title: 'Connect multiple instances',
-    description:
-      'Aggregate libraries from more than one Read Flow server into a single view, from the PWA or the Cosmic desktop app, with reading progress synced across all of them.',
-    screenshot: 'cosmic-multi-instance.png',
   },
   {
     slug: 'pdf-reader',
@@ -47,11 +26,32 @@ export const FEATURES: Feature[] = [
     screenshot: 'cosmic-epub-reader.png',
   },
   {
+    slug: 'scanning',
+    title: 'Automatic scanning & de-duplication',
+    description:
+      'Read Flow scans your document folders and fingerprints every file with SHA-256, so duplicates are caught even if they were renamed or copied.',
+    screenshot: 'cosmic-scanning.png',
+  },
+  {
+    slug: 'tags',
+    title: 'Tags & auto-tagging',
+    description:
+      'Organize your library with tags, and define rules that tag documents automatically as they are discovered.',
+    screenshot: 'cosmic-tags.png',
+  },
+  {
     slug: 'opds',
     title: 'Online libraries (OPDS)',
     description:
       'Search and pull public-domain titles straight from catalogs like Project Gutenberg and Standard Ebooks.',
     screenshot: 'cosmic-opds.png',
+  },
+  {
+    slug: 'multi-instance',
+    title: 'Connect multiple instances',
+    description:
+      'Aggregate libraries from more than one Read Flow server into a single view, from the PWA or the Cosmic desktop app, with reading progress synced across all of them.',
+    screenshot: 'cosmic-multi-instance.png',
   },
 ];
 
