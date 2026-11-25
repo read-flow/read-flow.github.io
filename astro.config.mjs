@@ -8,9 +8,9 @@ export default defineConfig({
       title: 'Read Flow Guides',
       description: 'Install, setup, and advanced guides for Read Flow.',
       favicon: '/favicon-32.png',
-      social: {
-        github: 'https://github.com/read-flow/read-flow',
-      },
+      social: [
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/read-flow/read-flow' },
+      ],
       sidebar: [
         {
           label: 'Guides',
@@ -18,10 +18,16 @@ export default defineConfig({
             { label: 'Guides', link: '/guides/' },
             { label: 'Install', link: '/guides/install/' },
             { label: 'Setup & configuration', link: '/guides/setup/' },
-            { label: 'Advanced', autogenerate: { directory: 'guides/advanced' } },
+            {
+              label: 'Advanced',
+              items: [{ autogenerate: { directory: 'guides/advanced' } }],
+            },
           ],
         },
       ],
+      components: {
+        ThemeSelect: './src/components/ThemeSelectHidden.astro',
+      },
       customCss: ['./src/styles/starlight-theme.css'],
     }),
   ],

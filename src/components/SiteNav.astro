@@ -4,44 +4,148 @@ import { NAV_LINKS, validateNavLinks } from '../lib/nav-links';
 validateNavLinks(NAV_LINKS);
 ---
 <header class="site-nav">
-  <a class="brand" href="/">
-    <img src="/favicon-32.png" width="24" height="24" alt="" />
-    <span>Read Flow</span>
-  </a>
-  <nav>
-    <ul>
-      {NAV_LINKS.map((link) => (
-        <li><a href={link.href}>{link.label}</a></li>
-      ))}
-    </ul>
-  </nav>
+  <div class="container bar">
+    <a class="brand" href="/">
+      <img src="/favicon-192.png" width="28" height="28" alt="" />
+      <span>Read Flow</span>
+    </a>
+
+    <nav aria-label="Primary">
+      <ul class="links">
+        {NAV_LINKS.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <a class="btn btn-primary btn-sm install" href="/guides/install/">Install</a>
+
+    <details class="menu">
+      <summary>Menu</summary>
+      <ul>
+        {NAV_LINKS.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </details>
+  </div>
 </header>
 
 <style>
   .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid var(--color-border);
+    background: rgb(8 9 53 / 0.72);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    backdrop-filter: saturate(160%) blur(14px);
+  }
+
+  .bar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1.5rem;
-    background: var(--color-bg-2);
-  }
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--color-text);
-    text-decoration: none;
-    font-weight: 700;
-  }
-  nav ul {
-    display: flex;
     gap: 1.5rem;
-    list-style: none;
+    height: 4rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--color-text);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+
+  .brand img {
+    border-radius: 8px;
+  }
+
+  nav {
+    margin-left: auto;
+  }
+
+  .links {
+    display: flex;
+    gap: 1.75rem;
     margin: 0;
     padding: 0;
+    list-style: none;
   }
-  nav a {
-    color: var(--color-text);
+
+  .links a,
+  .menu a {
+    color: var(--color-text-muted);
     text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .links a:hover,
+  .menu a:hover {
+    color: var(--color-text);
+  }
+
+  .menu {
+    display: none;
+    position: relative;
+    margin-left: auto;
+  }
+
+  .menu summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--color-border-strong);
+    border-radius: 999px;
+    color: var(--color-text);
+    font-size: 0.9rem;
+  }
+
+  .menu summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .menu ul {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 0.6rem);
+    min-width: 12rem;
+    margin: 0;
+    padding: 0.5rem;
+    list-style: none;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-2);
+    box-shadow: var(--shadow-card);
+  }
+
+  .menu li a {
+    display: block;
+    padding: 0.6rem 0.75rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .menu li a:hover {
+    background: rgb(238 241 251 / 0.06);
+  }
+
+  @media (max-width: 760px) {
+    .links {
+      display: none;
+    }
+
+    .menu {
+      display: block;
+    }
+
+    nav {
+      margin-left: 0;
+    }
+
+    .install {
+      display: none;
+    }
   }
 </style>

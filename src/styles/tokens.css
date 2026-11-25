@@ -2,6 +2,9 @@
  * Design tokens (palette) derived from assets/brand/logo-source.png.
  * See assets/brand/color-palette.md for how each value was sampled/derived
  * and how the eight accents are meant to be used.
+ *
+ * The site is dark-mode only. Surfaces and borders below are the palette's
+ * own colors at low opacity, so they stay on-brand without new hues.
  */
 :root {
   --color-bg: #080935;
@@ -27,8 +30,45 @@
   --color-cta-mid: var(--color-orange);
   --color-cta-end: var(--color-gold);
 
+  /* Derived surfaces and borders. */
+  --color-surface: rgb(21 28 91 / 0.55);
+  --color-surface-raised: rgb(21 28 91 / 0.85);
+  --color-border: rgb(238 241 251 / 0.1);
+  --color-border-strong: rgb(238 241 251 / 0.18);
+
+  --gradient-brand: linear-gradient(
+    120deg,
+    var(--color-cyan) 0%,
+    var(--color-purple) 55%,
+    var(--color-pink) 100%
+  );
+  --gradient-cta: linear-gradient(
+    135deg,
+    var(--color-cta-start),
+    var(--color-cta-mid),
+    var(--color-cta-end)
+  );
+  --gradient-glow: radial-gradient(
+    closest-side,
+    rgb(168 85 247 / 0.35),
+    rgb(56 189 248 / 0.12) 60%,
+    transparent
+  );
+
+  --shadow-card: 0 1px 0 rgb(255 255 255 / 0.04) inset,
+    0 24px 60px -28px rgb(0 0 0 / 0.75);
+  --shadow-window: 0 2px 0 rgb(255 255 255 / 0.05) inset,
+    0 40px 100px -30px rgb(0 0 0 / 0.85);
+
   --font-sans:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --radius-lg: 16px;
-  --radius-md: 8px;
+    'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+
+  --content-max: 1120px;
 }

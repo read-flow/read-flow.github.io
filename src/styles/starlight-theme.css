@@ -1,36 +1,41 @@
 /**
- * Starlight theme override — enforces the brand palette (see src/styles/tokens.css)
- * on the /guides/ section, and makes the result dark-mode-only in effect: every
- * value is set identically under `:root` and `:root[data-theme='light']`, so
- * toggling Starlight's built-in light/dark switch produces no visible change.
+ * Starlight theme overrides. Enforces the brand palette (see tokens.css) on
+ * the /guides/ section and keeps it dark-only: every value is set identically
+ * under `:root` and `:root[data-theme='light']`, so toggling Starlight's
+ * light/dark switch produces no visible change.
  *
- * See docs/superpowers/specs/2026-07-20-marketing-site-design.md
- * ("Visual identity", "Out of scope (v1)" -> "Light mode").
+ * Colors follow assets/brand/color-palette.md.
  */
 @import './tokens.css';
 
 :root,
 :root[data-theme='light'] {
+  color-scheme: dark;
+
+  /* Typography */
+  --sl-font: var(--font-sans);
+  --sl-font-mono: var(--font-mono);
+  --sl-content-width: 48rem;
+
   /* Base surfaces */
   --sl-color-white: var(--color-text);
   --sl-color-black: var(--color-bg);
 
   --sl-color-gray-1: var(--color-text);
-  --sl-color-gray-2: var(--color-text);
+  --sl-color-gray-2: #dfe5f7;
   --sl-color-gray-3: var(--color-text-muted);
-  --sl-color-gray-4: var(--color-text-muted);
+  --sl-color-gray-4: #6f7aa3;
   --sl-color-gray-5: #14163d;
   --sl-color-gray-6: var(--color-bg-2);
-  --sl-color-gray-7: var(--color-bg-2);
+  --sl-color-gray-7: #0e1245;
 
-  /* Accent (brand primary / secondary) — low/high are --color-purple
-     shifted in lightness only (same hue), not blended toward the blue bg. */
+  /* Accent (brand primary). low/high shift lightness only, same hue. */
   --sl-color-accent-low: #2a0948;
   --sl-color-accent: var(--color-primary);
   --sl-color-accent-high: #d2b2f0;
 
-  /* Aside/semantic colors: each -low/-high pair is its base hue lightened
-     or darkened, matching the derivation in assets/brand/color-palette.md. */
+  /* Semantic colors: each -low/-high pair is the base hue lightened or
+     darkened, matching the derivation in assets/brand/color-palette.md. */
   --sl-color-orange-low: #47240b;
   --sl-color-orange: var(--color-cta-mid);
   --sl-color-orange-high: #efccb4;
@@ -52,13 +57,90 @@
   --sl-color-text-accent: var(--color-book);
   --sl-color-text-invert: var(--color-text);
   --sl-color-bg: var(--color-bg);
-  --sl-color-bg-nav: var(--color-bg-2);
-  --sl-color-bg-sidebar: var(--color-bg-2);
+  --sl-color-bg-nav: rgb(8 9 53 / 0.72);
+  --sl-color-bg-sidebar: transparent;
   --sl-color-bg-inline-code: #101132;
   --sl-color-bg-accent: var(--color-primary);
-  --sl-color-hairline-light: #14163d;
-  --sl-color-hairline: #101132;
+  --sl-color-hairline-light: rgb(238 241 251 / 0.1);
+  --sl-color-hairline: rgb(238 241 251 / 0.1);
   --sl-color-hairline-shade: var(--color-bg);
 
   --sl-color-backdrop-overlay: hsla(238, 63%, 4%, 0.66);
+
+  --sl-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3);
+  --sl-shadow-md: 0 12px 32px -12px rgb(0 0 0 / 0.6);
+  --sl-shadow-lg: 0 28px 60px -20px rgb(0 0 0 / 0.75);
+}
+
+/* Glass header, matching the landing page navigation. */
+header.header {
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  backdrop-filter: saturate(160%) blur(14px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Body copy and headings. */
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3 {
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.sl-markdown-content h2 {
+  margin-top: 2.75em;
+  padding-top: 0.6em;
+  border-top: 1px solid var(--color-border);
+}
+
+.sl-markdown-content a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* Screenshots embedded in guides read as framed app windows. */
+.sl-markdown-content img {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+/* Tables: quieter borders, rounded corners. */
+.sl-markdown-content table {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* Inline code reads as a token, not as a block of text. */
+.sl-markdown-content :not(pre) > code {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+
+/* Sidebar: the active page gets a brand-colored indicator. */
+nav.sidebar [aria-current='page'] {
+  color: var(--color-text);
+}
+
+/* Splash (landing) hero for the guides index. */
+.hero h1 {
+  letter-spacing: -0.035em;
+}
+
+.hero .tagline {
+  color: var(--color-text-muted);
+}
+
+/* Splash hero actions use the brand gradient for the primary button. */
+.hero .sl-link-button.primary {
+  background: var(--gradient-cta);
+  border-color: transparent;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.hero .sl-link-button.secondary {
+  border-color: var(--color-border-strong);
+  color: var(--color-text);
 }

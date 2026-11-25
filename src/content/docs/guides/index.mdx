@@ -1,9 +1,30 @@
 ---
 title: Guides
 description: Install, configure, and get the most out of Read Flow.
+template: splash
+hero:
+  title: Read Flow guides
+  tagline: Install Read Flow, set up your library, and go further with remote servers, OPDS catalogs and HTTPS.
+  actions:
+    - text: Install Read Flow
+      link: /guides/install/
+      icon: right-arrow
+      variant: primary
+    - text: Setup & configuration
+      link: /guides/setup/
+      icon: setting
+      variant: secondary
 sidebar:
   order: 0
 ---
 
-Start here: install Read Flow, then set up your library. Power users can dig into the advanced
-guides for multi-instance setups, OPDS catalogs, headless + PWA pairing, and TLS.
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+<CardGrid>
+  <LinkCard title="Install" description="Linux packages, Flatpak, macOS, or build from source." href="/guides/install/" />
+  <LinkCard title="Setup & configuration" description="Scan folders, appearance, server and privacy settings in Preferences." href="/guides/setup/" />
+  <LinkCard title="Multi-instance" description="Connect the PWA or the desktop app to more than one server." href="/guides/advanced/multi-instance/" />
+  <LinkCard title="OPDS catalogs" description="Search Project Gutenberg, Standard Ebooks, and your own catalogs." href="/guides/advanced/opds-catalogs/" />
+  <LinkCard title="HTTPS & TLS" description="Serve over HTTPS with a local CA, or behind a reverse proxy." href="/guides/advanced/reverse-proxy-tls/" />
+  <LinkCard title="Headless server + PWA" description="Run without a window on a home server or NAS." href="/guides/advanced/headless-pwa/" />
+</CardGrid>
