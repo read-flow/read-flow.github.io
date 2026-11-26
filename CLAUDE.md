@@ -33,6 +33,28 @@ npm test          # vitest unit tests
   assets/sample-library> --out <path to src/assets/screenshots>`. It renders each app page
   headlessly (no display server, no live network) and writes PNGs straight to `--out`.
   Regenerate and re-commit them whenever the relevant app UI changes.
+  - Scenes live in `cosmic/src/screenshot_tool/scenes/` (in `read-flow/read-flow`). Output is
+    1200×800 PNG (`WIDTH`/`HEIGHT` in `screenshot_tool/mod.rs`), dark theme only, all shots of
+    one app share that size. Generation rewrites every scene. In one run, `cosmic-epub-reader.png`
+    and `cosmic-scanning.png` changed although their scenes had not, so commit only the shots you meant to change.
+  - Filenames: `cosmic-<slug>.png`, where `<slug>` matches the feature `slug` in `src/lib/features.ts`
+    (required feature shots: `scanning`, `tags`, `progress`, `multi-instance`, `pdf-reader`,
+    `epub-reader`, `opds`). Each feature shot must show its scene: scanning shows duplicate
+    candidates, progress shows a mix of Unread/Reading/Read states, pdf-reader shows a page with
+    readable body text (not the cover), epub-reader shows readable text, opds shows catalog
+    search results, multi-instance shows two configured remote sources marked reachable.
+  - Sample data only: titles come from `assets/sample-library/`, and the remote sources use
+    `example.com` hosts.
+  - Known gaps, not blocking:
+    - `cosmic-scanning.png` shows the duplicates as two selected rows with a Merge button. The UI
+      has no dedicated duplicate badge, so the shot does not flag a "detected duplicate" as such.
+    - `cosmic-progress.png` shows no visible Unread card: the dashboard only lists Reading
+      documents, so the Unread document appears only in the "Documents" count.
+    - Optional screenshots not captured: "Three ways in" cards (`src/components/ThreeWaysIn.astro`)
+      for the desktop app and PWA. No PWA scene exists. The headless server has no UI, so it is skipped.
+    - Guides embed only settings screenshots (`cosmic-settings-*.png`), not feature shots.
+    - Deleting the old `screenshots` branch on `read-flow/read-flow` (the former hotlink source) is
+      still pending. Nothing in this repo references it.
 - Guide content (`src/content/docs/guides/`) should stay in sync with `read-flow/read-flow`'s
   `README.md` and `read-flow.toml`/`core/src/settings.rs` — when that repo's config keys or
   install steps change, update the corresponding guide here in the same PR if possible.
